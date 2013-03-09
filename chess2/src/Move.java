@@ -1,13 +1,22 @@
 
 public class Move {
 	private Move next;
+	
 	private double value;
 	private Location[] from;
 	private Location[] to;
+	private Move pv;
+	
 	public Move(Location[] from, Location[] to) {
 		super();
 		this.from = from;
 		this.to = to;
+	}
+	public Move getPv() {
+		return pv;
+	}
+	public void setPv(Move pv) {
+		this.pv = pv;
 	}
 	public Location[] getFrom() {
 		return from;

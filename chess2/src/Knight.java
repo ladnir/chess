@@ -11,7 +11,10 @@ public class Knight implements Peice{
 		super();
 		this.top = top;
 	}
-
+	public Peice clone(){
+		
+		return this;
+	}
 	@Override
 	public Move[] getMoves(Location l, Peice[][] board) {
 		Location[] loc = new Location[8];

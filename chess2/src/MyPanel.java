@@ -87,32 +87,39 @@ public class MyPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent mouse) {
+		boolean twoPlayer=false;
 		// Copy the last clicked location into the 'old' variables.
         oldX=pointX;
         oldY=pointY;
+        boolean moved=false;
     // Get the location of the current mouse click.
         pointX = mouse.getX();
         pointY = mouse.getY();
+        //boolean moved=false;
     // Tell the panel that we need to redraw things.
         
         System.out.println("click ("+pointX/50+","+pointY/50+")");
         if(k==0&&pointX/50<8 &&pointX/50>=0 && pointY/50<8 &&pointY/50>=0 &&board.board[pointX/50][pointY/50]!=null&&board.board[pointX/50][pointY/50].top()==topTeamsTurn){
+        	//selection stage
+        	
         	selected = new Location(pointX/50,pointY/50);
         	moves= board.board[pointX/50][pointY/50].getMoves(selected, board.board);
         	System.out.println("click 1");
         	if(moves==null)System.out.println("moves null");
         }else if(selected!=null && pointX/50<8 &&pointX/50>=0 && pointY/50<8 &&pointY/50>=0){
-        	System.out.println("selected=("+selected.x+","+selected.y+")");
+        	//movement stage
         	
+        	System.out.println("selected=("+selected.x+","+selected.y+")");
         	for(int i=0;i<moves.length;i++){
         		if(moves[i].getTo()[0].x==pointX/50 &&moves[i].getTo()[0].y== pointY/50){
         			System.out.println("ggggg");
-        			k=board.doMove(moves[i]);
-        			chessComp.findMove(board,!topTeamsTurn);
-        			//topTeamsTurn=!topTeamsTurn;
-        			
+        			k=board.doMove(moves[i]);  	
+        			moved=true;
         		}
         	}
+        	if(twoPlayer)topTeamsTurn=!topTeamsTurn;
+        	else if(k==0 && moved)k=chessComp.findMove(board,!topTeamsTurn);
+        	
         	selected=null;
         	moves=null;
         	System.out.println("click 2");
@@ -121,7 +128,7 @@ public class MyPanel extends JPanel implements MouseListener{
         	moves=null;
         	selected=null;
         }
-        
+       
         repaint();
 		
 	}

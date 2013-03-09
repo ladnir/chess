@@ -12,7 +12,10 @@ public class Queen implements Peice {
 	public Boolean top() {
 		return top;
 	}
-
+	public Peice clone(){
+		
+		return this;
+	}
 	@Override
 	public Move[] getMoves(Location l, Peice[][] board) {
 		LinkedList<Location> loc= new LinkedList<Location>();
@@ -72,7 +75,7 @@ public class Queen implements Peice {
 		if (loc.size()==0)return null;
 
 		int f=loc.size();
-		System.out.println("queen size="+f);
+		//System.out.println("queen size="+f);
 		Move[] moves = new Move[loc.size()];
 		for(int j=0;j<f;j++){
 			Location[] h= {l};

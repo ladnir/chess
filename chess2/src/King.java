@@ -4,6 +4,10 @@ public class King implements Peice{
 	private String type = "King";
 	private Boolean castled = false;
 	@Override
+	public Peice clone(){
+		
+		return this;
+	}
 	public Boolean top() {
 		return top;
 	}

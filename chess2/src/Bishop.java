@@ -8,7 +8,10 @@ public class Bishop implements Peice {
 		super();
 		this.top = top;
 	}
-
+	public Peice clone(){
+		
+		return this;
+	}
 	@Override
 	public Boolean top() {
 		

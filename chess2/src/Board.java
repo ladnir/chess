@@ -42,6 +42,17 @@ public class Board {
 		
 	}
 	
+	public Board(Board board2) {
+		int x,y;
+		last=board2.last;
+		for(x=0;x<8;x++){
+			for(y=0;y<8;y++){
+				if(board2.board[x][y]!=null)board[x][y]=board2.board[x][y].clone();
+			}
+			
+		}
+	}
+
 	public Move[] getMoves(Location l){
 		
 		return board[l.x][l.y].getMoves(l, board);
@@ -72,6 +83,36 @@ public class Board {
 		
 		return k;
 	}
+
+	public Move getAllMoves(boolean curTeam) {
+		System.out.println("getallmoves");
+		int x,y;
+		Move moveLL = null;
+		Move temp[];
+		for(x=0;x<8;x++){
+			for(y=0;y<8;y++){
+				if(board[x][y]!=null&&board[x][y].top()==curTeam){
+		        	temp=board[x][y].getMoves(new Location(x,y), board);
+		        	int k;
+		        	if(temp==null){
+		        		k=0;
+		        		//System.out.println("NULL");
+		        	}else{
+		        		//System.out.println("NOT NULL");
+		        		k=temp.length;
+		        		
+		        	}
+		        	for(int i=0;i<k;i++){
+		        		temp[i].setNext(moveLL);
+		        		moveLL=temp[i];
+		        	}
+				}
+			}
+		}
+		System.out.println("returning");
+		return moveLL;
+	}
+	
 	
 
 }

@@ -7,7 +7,10 @@ public class Castle implements Peice {
 		super();
 		this.top = top;
 	}
-
+	public Peice clone(){
+		
+		return this;
+	}
 	private String type = "Castle";
 	@Override
 	public Boolean top() {

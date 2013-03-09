@@ -8,7 +8,18 @@ public class Pon implements Peice{
 	public Boolean top() {
 		return top;
 	}
-
+	public Peice clone(){
+		Pon clone = new Pon(top);
+		if(last!=null){
+			Location lastClone=new Location(last.x,last.y);
+			clone.last=lastClone;
+		}
+		if(last2!=null){
+			Location last2Clone=new Location(last2.x,last2.y);
+			clone.last2=last2Clone;
+		}
+		return clone;
+	}
 	@Override
 	public Move[] getMoves(Location l, Peice[][] board) {
 		Location[] loc = new Location[4];
