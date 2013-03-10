@@ -3,6 +3,7 @@ import java.util.LinkedList;
 
 public class Queen implements Peice {
 	private Boolean top;
+	private double value=1000;
 	private String type = "Queen";
 	public Queen(Boolean top) {
 		super();
@@ -11,6 +12,10 @@ public class Queen implements Peice {
 	@Override
 	public Boolean top() {
 		return top;
+	}
+	
+	public double getValue() {
+		return value;
 	}
 	public Peice clone(){
 		

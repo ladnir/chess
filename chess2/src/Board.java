@@ -85,7 +85,7 @@ public class Board {
 	}
 
 	public Move getAllMoves(boolean curTeam) {
-		System.out.println("getallmoves");
+		//System.out.println("getallmoves");
 		int x,y;
 		Move moveLL = null;
 		Move temp[];
@@ -109,7 +109,7 @@ public class Board {
 				}
 			}
 		}
-		System.out.println("returning");
+		//System.out.println("returning");
 		return moveLL;
 	}
 	

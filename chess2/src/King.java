@@ -1,6 +1,7 @@
 
 public class King implements Peice{
 	private Boolean top;
+	private double value=100000;
 	private String type = "King";
 	private Boolean castled = false;
 	@Override
@@ -10,6 +11,9 @@ public class King implements Peice{
 	}
 	public Boolean top() {
 		return top;
+	}
+	public double getValue() {
+		return value;
 	}
 
 	@Override

@@ -2,11 +2,15 @@
 public class Pon implements Peice{
 	private String type;
 	private Boolean top;
+	private double value=100;
 	private Location last;
 	Location last2;
 	@Override
 	public Boolean top() {
 		return top;
+	}
+	public double getValue() {
+		return value;
 	}
 	public Peice clone(){
 		Pon clone = new Pon(top);

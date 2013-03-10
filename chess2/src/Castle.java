@@ -3,9 +3,13 @@ import java.util.LinkedList;
 
 public class Castle implements Peice {
 	private Boolean top;
+	private double value=525;
 	public Castle(Boolean top) {
 		super();
 		this.top = top;
+	}
+	public double getValue() {
+		return value;
 	}
 	public Peice clone(){
 		

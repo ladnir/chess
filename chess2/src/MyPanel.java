@@ -12,6 +12,7 @@ public class MyPanel extends JPanel implements MouseListener{
 	Move finalMove;
 	Location selected;
 	Boolean topTeamsTurn=true;
+	int db=0;
 	int k=0;
 	int oldX,pointX,pointY,oldY;
 	Computer chessComp;
@@ -26,6 +27,7 @@ public class MyPanel extends JPanel implements MouseListener{
 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		if(db==1)g.drawString("Debugging", 8*50+5, 20);
 		
 		if(topTeamsTurn&&k==0)g.drawString("red's turn", 8*50+5, 10);
 		if(!topTeamsTurn&&k==0)g.drawString("blacks's turn", 8*50+5, 10);

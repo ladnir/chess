@@ -1,15 +1,42 @@
 import java.util.Random;
-public class Computer {
+//import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Computer extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Random rand= new Random();
+	MyPanel panel;
+	private double num;
+	public Computer(){
+//		super("Chess");
+//		setSize(500, 500);
+//		setVisible(true);
+//		panel = new MyPanel();
+//		panel.setBackground(Color.WHITE);
+//		add(panel);
+		
+	}
+	
 	public int findMove(Board board, boolean curTeam) {
-		int depth =2;
+		int depth =4;
+		
 		Move a= new Move(null, null);
 		a.setValue(Double.MIN_VALUE);
 		Move b= new Move(null, null);
 		b.setValue(Double.MAX_VALUE);
-		
-		Move bestMove =alphabeta(depth,a,b,curTeam,board,curTeam,null);
-		System.out.println("done");
+		num=0;
+		Move bestMove =fullSearch(depth,board,null,curTeam,curTeam);//alphabeta(depth,a,b,curTeam,board,curTeam,null);
+		System.out.println("done "+num);
 		return board.doMove(bestMove);
 	}
 
@@ -26,24 +53,61 @@ public class Computer {
 		if(curTeam==maxTeam){
 			Move best = null;
 			while(moves!=null){
-				temp=new Board(board);//shallow copy
+				temp=new Board(board);//shallow/medium copy
 				temp.doMove(moves);
-				Move tempMove=fullSearch(depth-1,board,moves,!curTeam,maxTeam);
-				if(best==null || best.getValue()>tempMove.getValue())best=tempMove;
+				Move tempMove=fullSearch(depth-1,temp,moves,!curTeam,maxTeam);
+				
+				if(best==null || best.getValue()<tempMove.getValue()){
+					best=tempMove;
+				}else if(best.getValue()==tempMove.getValue() && rand.nextInt(depth)%4==3){
+					best=tempMove;
+				}
+				
+				moves=moves.getNext();
+				
 			}
-			return best;
+			if (last==null)return best;
+			last.setValue(best.getValue());
+			return last;
 		}else{
 			Move best = null;
 			while(moves!=null){
 				temp=new Board(board);//shallow copy
+				
 				temp.doMove(moves);
-				Move tempMove=fullSearch(depth-1,board,moves,!curTeam,maxTeam);
-				if(best==null || best.getValue()<tempMove.getValue())best=tempMove;
+				Move tempMove=fullSearch(depth-1,temp,moves,!curTeam,maxTeam);
+				if(best==null || best.getValue()>tempMove.getValue())best=tempMove;
+				else if(best.getValue()==tempMove.getValue() && rand.nextInt(depth)%4==3){
+					best=tempMove;
+				}
+				moves=moves.getNext();
 			}
-			return best;
+			if (last==null)return best;
+			last.setValue(best.getValue());
+			return last;
 		}
 		
 	}
+	
+	private void show(Board board, Move moves) {
+		
+		
+		for(int i=0;i<8;i++){
+			for(int j=0;j<8;j++){
+				if(board.board[j][i]!=null){
+					System.out.print(board.board[j][i].getType());
+					if(board.board[j][i].top())System.out.print("^");
+					else System.out.print(".");
+					System.out.print("	");
+				}
+				else System.out.print("*	");
+			}
+			System.out.println(" ");
+		}System.out.println("__________________________________ ");
+		
+	}
+
+
 	private Move alphabeta(int depth, Move a,Move b, boolean curTeam,Board board,boolean maxTeam,Move last) {
 		System.out.println("d="+depth);
 		Board temp;
@@ -118,8 +182,19 @@ public class Computer {
 	}
 
 	private double evaluate(Board board, boolean curTeam) {
-		
-		return rand.nextDouble();
+		double score=0;
+		num++;
+		for(int x=0;x<8;x++){
+			for(int y=0;y<8;y++){
+				if(board.board[x][y] != null){
+					if(board.board[x][y].top()==curTeam)
+						score+=board.board[x][y].getValue();
+					else score-=board.board[x][y].getValue();
+					
+				}
+			}
+		}
+		return score;
 	}
 
 }

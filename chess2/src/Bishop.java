@@ -3,6 +3,7 @@ import java.util.LinkedList;
 
 public class Bishop implements Peice {
 	private Boolean top;
+	private double value=350;
 	private String type = "Bishop";
 	public Bishop(Boolean top) {
 		super();
@@ -11,6 +12,9 @@ public class Bishop implements Peice {
 	public Peice clone(){
 		
 		return this;
+	}
+	public double getValue() {
+		return value;
 	}
 	@Override
 	public Boolean top() {

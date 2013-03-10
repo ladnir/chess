@@ -1,6 +1,7 @@
 
 public class Knight implements Peice{
 	private Boolean top;
+	private double value;
 	private String type = "Knight";
 	@Override
 	public Boolean top() {
@@ -9,6 +10,7 @@ public class Knight implements Peice{
 
 	public Knight(Boolean top) {
 		super();
+		value=350;
 		this.top = top;
 	}
 	public Peice clone(){
@@ -47,6 +49,11 @@ public class Knight implements Peice{
 	@Override
 	public String getType() {
 		return type;
+	}
+
+	@Override
+	public double getValue() {
+		return value;
 	}
 
 }

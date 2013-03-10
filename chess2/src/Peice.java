@@ -5,5 +5,6 @@ public interface Peice {
 	public Move[] getMoves(Location l,Peice[][] board);
 	public String getType();
 	public Peice clone();
+	public double getValue();
 	
 }
