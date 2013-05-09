@@ -90,6 +90,18 @@ public class MyPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent mouse) {
 		boolean twoPlayer=false;
+		boolean comuterOnly=false;
+		if(comuterOnly){
+			
+			
+	
+			
+				k=chessComp.findMove(board,topTeamsTurn);
+				topTeamsTurn=!topTeamsTurn;
+				repaint();
+				return;
+			
+		}
 		// Copy the last clicked location into the 'old' variables.
         oldX=pointX;
         oldY=pointY;

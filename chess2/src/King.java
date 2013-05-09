@@ -53,15 +53,15 @@ public class King implements Peice{
 		int c=0;
 		
 		if(this.top && l.y==0 &&l.x==4){
-			System.out.println("check1");
+			//System.out.println("check1");
 			if(board[0][0]!=null && board[0][0].getType()=="Castle" && board[0][0].top() &&board[2][0]==null && board[3][0]==null){
-				System.out.println("check2");
+				//System.out.println("check2");
 				Location[] from= {l,new Location(0,0)};
 				Location[] to= {new Location(2,0),new Location(3,0)};
 				castling[c++]=new Move(from,to);
 			}
 			if(board[7][0]!=null && board[7][0].getType()=="Castle" && board[7][0].top() &&board[6][0]==null && board[5][0]==null){
-				System.out.println("check3");
+				//System.out.println("check3");
 				Location[] from= {l,new Location(7,0)};
 				Location[] to= {new Location(6,0),new Location(5,0)};
 				castling[c++]=new Move(from,to);

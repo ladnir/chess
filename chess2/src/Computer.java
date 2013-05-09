@@ -67,7 +67,8 @@ public class Computer extends JFrame{
 				
 			}
 			if (last==null)return best;
-			last.setValue(best.getValue());
+			if(best!=null)last.setValue(best.getValue());
+			else last.setValue(Double.MIN_VALUE);
 			return last;
 		}else{
 			Move best = null;
@@ -83,7 +84,8 @@ public class Computer extends JFrame{
 				moves=moves.getNext();
 			}
 			if (last==null)return best;
-			last.setValue(best.getValue());
+			if(best!=null)last.setValue(best.getValue());
+			else last.setValue(Double.MIN_VALUE);
 			return last;
 		}
 		
@@ -195,6 +197,17 @@ public class Computer extends JFrame{
 			}
 		}
 		return score;
+	}
+	
+	public void computerOnly(Board board) {
+		boolean curTeam=true;
+		int k=0;
+		while(k==0){
+			k=findMove(board,curTeam);
+			curTeam=!curTeam;
+			repaint();
+		}
+		
 	}
 
 }

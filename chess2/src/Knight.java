@@ -54,6 +54,7 @@ public class Knight implements Peice{
 	@Override
 	public double getValue() {
 		return value;
+		
 	}
 
 }
